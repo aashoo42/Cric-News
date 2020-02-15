@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D11DBDD23F01F4C007E2D92 /* BatsmanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11DBDC23F01F4C007E2D92 /* BatsmanCell.swift */; };
+		6D11DBDF23F02F2C007E2D92 /* ExtrasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11DBDE23F02F2C007E2D92 /* ExtrasCell.swift */; };
 		6D62610323EAB80F008407D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D62610223EAB80F008407D0 /* AppDelegate.swift */; };
 		6D62610523EAB80F008407D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D62610423EAB80F008407D0 /* ViewController.swift */; };
 		6D62610823EAB80F008407D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D62610623EAB80F008407D0 /* Main.storyboard */; };
 		6D62610A23EAB811008407D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D62610923EAB811008407D0 /* Assets.xcassets */; };
 		6D62610D23EAB811008407D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D62610B23EAB811008407D0 /* LaunchScreen.storyboard */; };
 		6D69DCE123EEB8320070D353 /* SeriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69DCE023EEB8320070D353 /* SeriesVC.swift */; };
+		6D69DCE323EEBF740070D353 /* SeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69DCE223EEBF740070D353 /* SeriesCell.swift */; };
+		6D69DCE723EEC8190070D353 /* ScoreboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69DCE623EEC8190070D353 /* ScoreboardVC.swift */; };
+		6D69DCE923EECEB20070D353 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69DCE823EECEB20070D353 /* DataModel.swift */; };
 		6DB0A37A23EDCDB5009541BB /* CricketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A37923EDCDB5009541BB /* CricketCell.swift */; };
 		7521CE449220BF6D32B732A7 /* Pods_AllOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE32E68D87C8E1EE2B81D90 /* Pods_AllOne.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D11DBDC23F01F4C007E2D92 /* BatsmanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatsmanCell.swift; sourceTree = "<group>"; };
+		6D11DBDE23F02F2C007E2D92 /* ExtrasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtrasCell.swift; sourceTree = "<group>"; };
 		6D6260FF23EAB80F008407D0 /* AllOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D62610223EAB80F008407D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D62610423EAB80F008407D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +33,9 @@
 		6D62610C23EAB811008407D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D62610E23EAB811008407D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D69DCE023EEB8320070D353 /* SeriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesVC.swift; sourceTree = "<group>"; };
+		6D69DCE223EEBF740070D353 /* SeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCell.swift; sourceTree = "<group>"; };
+		6D69DCE623EEC8190070D353 /* ScoreboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardVC.swift; sourceTree = "<group>"; };
+		6D69DCE823EECEB20070D353 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		6DB0A37923EDCDB5009541BB /* CricketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CricketCell.swift; sourceTree = "<group>"; };
 		BDD0ABC06CFE12059F14C9D7 /* Pods-AllOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllOne.release.xcconfig"; path = "Target Support Files/Pods-AllOne/Pods-AllOne.release.xcconfig"; sourceTree = "<group>"; };
 		DCE32E68D87C8E1EE2B81D90 /* Pods_AllOne.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllOne.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,13 +87,34 @@
 				6D62610223EAB80F008407D0 /* AppDelegate.swift */,
 				6D62610423EAB80F008407D0 /* ViewController.swift */,
 				6DB0A37923EDCDB5009541BB /* CricketCell.swift */,
-				6D69DCE023EEB8320070D353 /* SeriesVC.swift */,
+				6D69DCE823EECEB20070D353 /* DataModel.swift */,
+				6D69DCE423EEC7EF0070D353 /* Series */,
+				6D69DCE523EEC7FD0070D353 /* Scoreboard */,
 				6D62610623EAB80F008407D0 /* Main.storyboard */,
 				6D62610923EAB811008407D0 /* Assets.xcassets */,
 				6D62610B23EAB811008407D0 /* LaunchScreen.storyboard */,
 				6D62610E23EAB811008407D0 /* Info.plist */,
 			);
 			path = AllOne;
+			sourceTree = "<group>";
+		};
+		6D69DCE423EEC7EF0070D353 /* Series */ = {
+			isa = PBXGroup;
+			children = (
+				6D69DCE023EEB8320070D353 /* SeriesVC.swift */,
+				6D69DCE223EEBF740070D353 /* SeriesCell.swift */,
+			);
+			path = Series;
+			sourceTree = "<group>";
+		};
+		6D69DCE523EEC7FD0070D353 /* Scoreboard */ = {
+			isa = PBXGroup;
+			children = (
+				6D69DCE623EEC8190070D353 /* ScoreboardVC.swift */,
+				6D11DBDC23F01F4C007E2D92 /* BatsmanCell.swift */,
+				6D11DBDE23F02F2C007E2D92 /* ExtrasCell.swift */,
+			);
+			path = Scoreboard;
 			sourceTree = "<group>";
 		};
 		939A483379DA2FC71D12B206 /* Frameworks */ = {
@@ -209,6 +240,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D11DBDF23F02F2C007E2D92 /* ExtrasCell.swift in Sources */,
+				6D69DCE923EECEB20070D353 /* DataModel.swift in Sources */,
+				6D69DCE723EEC8190070D353 /* ScoreboardVC.swift in Sources */,
+				6D11DBDD23F01F4C007E2D92 /* BatsmanCell.swift in Sources */,
+				6D69DCE323EEBF740070D353 /* SeriesCell.swift in Sources */,
 				6DB0A37A23EDCDB5009541BB /* CricketCell.swift in Sources */,
 				6D69DCE123EEB8320070D353 /* SeriesVC.swift in Sources */,
 				6D62610523EAB80F008407D0 /* ViewController.swift in Sources */,
@@ -289,7 +325,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -344,7 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -360,15 +396,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HR558286L3;
 				INFOPLIST_FILE = AllOne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aashoo.AllOne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.absoluit.umiDriver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = Umi_Driver_Dev_New;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -380,15 +416,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HR558286L3;
 				INFOPLIST_FILE = AllOne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aashoo.AllOne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.absoluit.umiDriver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = Umi_Driver_Dev_New;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
