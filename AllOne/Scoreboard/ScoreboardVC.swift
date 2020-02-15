@@ -97,9 +97,7 @@ class ScoreboardVC: UIViewController {
         
         let url = "https://dev132-cricket-live-scores-v1.p.rapidapi.com/scorecards.php?"
         
-        SVProgressHUD.show()
         AppUtils.sharedUtils.getRestAPIResponse(urlString: url, headers: headers as NSDictionary, parameters: params as NSDictionary, method: .get) { (data) in
-            SVProgressHUD.dismiss()
             if (data["status"] != nil) && (data["status"] as! Int == 200){
                 let fullScorecard = data["fullScorecard"] as! NSDictionary
                 self.inningsArray = fullScorecard["innings"] as! NSArray
@@ -112,6 +110,12 @@ class ScoreboardVC: UIViewController {
                 print(data)
             }
         }
+    }
+    @IBAction func commentryAction(_ sender: UIButton) {
+        let objCommentryVC = self.storyboard?.instantiateViewController(withIdentifier: "CommentryVC") as! CommentryVC
+        objCommentryVC.seriesId = alreadyMatchData.seriesName.seriesId
+        objCommentryVC.matchId = alreadyMatchData.id
+        self.navigationController?.pushViewController(objCommentryVC, animated: true)
     }
 }
 

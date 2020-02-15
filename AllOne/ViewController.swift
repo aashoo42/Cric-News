@@ -40,9 +40,7 @@ class ViewController: UIViewController {
                       "inprogresslimit": "",
                       "upcomingLimit": "0"]
         
-        SVProgressHUD.show()
         AppUtils.sharedUtils.getRestAPIResponse(urlString: url, headers: headers as NSDictionary, parameters: params as NSDictionary, method: .get) { (data) in
-            SVProgressHUD.dismiss()
             if (data["status"] != nil) && (data["status"] as! Int == 200){
                 let matchList = data["matchList"] as! NSDictionary
                 let matches = matchList["matches"] as! NSArray

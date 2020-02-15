@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import Reachability
+import SVProgressHUD
 
 class AppUtils: NSObject, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -55,7 +56,9 @@ class AppUtils: NSObject, UIActionSheetDelegate, UIImagePickerControllerDelegate
         if reachability?.connection != .none{
 
             let headerToSend: HTTPHeaders = headers as! HTTPHeaders
+            SVProgressHUD.show()
             Alamofire.request(urlString, method: method, parameters: parameters as? [String: Any], headers: headerToSend).responseJSON { (response) in
+                SVProgressHUD.dismiss()
                 let statusCode = response.response?.statusCode
                 if statusCode == 200{
                     if (response.result.value is NSDictionary){

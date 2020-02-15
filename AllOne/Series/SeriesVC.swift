@@ -39,10 +39,7 @@ class SeriesVC: UIViewController {
         let params = ["seriesid": seriesId]
         let url = "https://dev132-cricket-live-scores-v1.p.rapidapi.com/matchseries.php"
         
-        
-        SVProgressHUD.show()
         AppUtils.sharedUtils.getRestAPIResponse(urlString: url, headers: headers as NSDictionary, parameters: params as NSDictionary, method: .get) { (data) in
-            SVProgressHUD.dismiss()
             if (data["status"] != nil) && (data["status"] as! Int == 200){
                 let matchList = data["matchList"] as! NSDictionary
                 let matches = matchList["matches"] as! NSArray
