@@ -9,6 +9,8 @@
 let deviceRatio = (UIScreen.main.bounds.width) / (375) // 1 for iPhone 6
 
 import UIKit
+import Reachability
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.checkInternetConnection()
+        
+        
+        
+        SVProgressHUD.setBackgroundColor(UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 0.5))
+        SVProgressHUD.setForegroundColor(UIColor.white)
+        
         return true
     }
 
@@ -43,6 +51,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    private let reachability = Reachability()!
+    private func checkInternetConnection(){
+        
+        reachability.whenReachable = { data in
+            // hide any popup if already showing
+            if self.window?.rootViewController is UIAlertController{
+                let alertController = self.window?.rootViewController as! UIAlertController
+                alertController.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+        reachability.whenUnreachable = { data in
+            self.showInternetAlert()
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
+    
+    func showInternetAlert(){
+        let alert = UIAlertController.init(title: "Internet?", message: "Please check your internet connection.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: nil))
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
 }
 

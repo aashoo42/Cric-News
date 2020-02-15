@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import SVProgressHUD
 
 class ViewController: UIViewController {
 
@@ -18,6 +19,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.barTintColor = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 0.5)
+        navigationController?.navigationBar.tintColor = UIColor.white
+
+        
         getCricketData()
     }
 
@@ -30,35 +36,23 @@ class ViewController: UIViewController {
         
         let url = "https://dev132-cricket-live-scores-v1.p.rapidapi.com/matches.php?"
         
-        let params = ["completedlimit": "5",
-                      "inprogresslimit": "5",
-                      "upcomingLimit": "5"]
+        let params = ["completedlimit": "",
+                      "inprogresslimit": "",
+                      "upcomingLimit": "0"]
         
-        Alamofire.request(url, method: .get, parameters: params, headers: headers).responseJSON { (data) in
-            
-            let jsonData = data.result.value as! NSDictionary
-            let matchList = jsonData["matchList"] as! NSDictionary
-            let matches = matchList["matches"] as! NSArray
-            self.cricketArray = matches
-            self.cricketTableView.reloadData()
-        }
-    }
-    
-    func getSpecificMatchData(seriesId: Int, matchId: Int){
-        let headers = [
-            "x-rapidapi-host": "dev132-cricket-live-scores-v1.p.rapidapi.com",
-            "x-rapidapi-key": "c4b7f6c03amshb614de998b9c9dap1a91e3jsncbcc3a6c56b3"
-        ]
-        
-        let url = "https://dev132-cricket-live-scores-v1.p.rapidapi.com/match.php?"
-        
-        let params = ["seriesid": seriesId,
-                      "matchid": matchId]
-        
-        Alamofire.request(url, method: .get, parameters: params, headers: headers).responseJSON { (data) in
-            
-            let jsonData = data.result.value as! NSDictionary
-            print(jsonData)
+        SVProgressHUD.show()
+        AppUtils.sharedUtils.getRestAPIResponse(urlString: url, headers: headers as NSDictionary, parameters: params as NSDictionary, method: .get) { (data) in
+            SVProgressHUD.dismiss()
+            if (data["status"] != nil) && (data["status"] as! Int == 200){
+                let matchList = data["matchList"] as! NSDictionary
+                let matches = matchList["matches"] as! NSArray
+                self.cricketArray = matches
+                self.cricketTableView.reloadData()
+                print(data["meta"])
+            }else{
+                print("Error in \(url)")
+                print(data)
+            }
         }
     }
 }

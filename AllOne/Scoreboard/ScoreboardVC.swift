@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SVProgressHUD
 
 class ScoreboardVC: UIViewController {
 
@@ -96,14 +97,20 @@ class ScoreboardVC: UIViewController {
         
         let url = "https://dev132-cricket-live-scores-v1.p.rapidapi.com/scorecards.php?"
         
-        Alamofire.request(url, method: .get, parameters: params, headers: headers).responseJSON { (data) in
-            let jsonData = data.result.value as! NSDictionary
-            let fullScorecard = jsonData["fullScorecard"] as! NSDictionary
-            self.inningsArray = fullScorecard["innings"] as! NSArray
-            self.scoreboardTableView.isHidden = false
-            self.scoreboardTableView.reloadData()
-            self.InngCollectionView.reloadData()
-            self.setupHeaderData(index: self.selectedIndex)
+        SVProgressHUD.show()
+        AppUtils.sharedUtils.getRestAPIResponse(urlString: url, headers: headers as NSDictionary, parameters: params as NSDictionary, method: .get) { (data) in
+            SVProgressHUD.dismiss()
+            if (data["status"] != nil) && (data["status"] as! Int == 200){
+                let fullScorecard = data["fullScorecard"] as! NSDictionary
+                self.inningsArray = fullScorecard["innings"] as! NSArray
+                self.scoreboardTableView.isHidden = false
+                self.scoreboardTableView.reloadData()
+                self.InngCollectionView.reloadData()
+                self.setupHeaderData(index: self.selectedIndex)
+            }else{
+                print("Error in \(url)")
+                print(data)
+            }
         }
     }
 }

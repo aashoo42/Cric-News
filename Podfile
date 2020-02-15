@@ -8,5 +8,7 @@ target 'AllOne' do
   # Pods for AllOne
 pod 'Alamofire'
 pod 'AlamofireImage'
+pod 'ReachabilitySwift', '4.3.1'
+pod 'SVProgressHUD'
 
 end

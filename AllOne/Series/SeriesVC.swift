@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SVProgressHUD
 
 class SeriesVC: UIViewController {
 
@@ -29,16 +30,25 @@ class SeriesVC: UIViewController {
         ]
         
         let params = ["seriesid": seriesId]
-        
         let url = "https://dev132-cricket-live-scores-v1.p.rapidapi.com/matchseries.php"
         
-        Alamofire.request(url, method: .get, parameters: params, headers: headers).responseJSON { (data) in
-            
-            let jsonData = data.result.value as! NSDictionary
-            let matchList = jsonData["matchList"] as! NSDictionary
-            let matches = matchList["matches"] as! NSArray
-            self.seriesArray = matches
-            self.seriesTableView.reloadData()
+        
+        SVProgressHUD.show()
+        AppUtils.sharedUtils.getRestAPIResponse(urlString: url, headers: headers as NSDictionary, parameters: params as NSDictionary, method: .get) { (data) in
+            SVProgressHUD.dismiss()
+            if (data["status"] != nil) && (data["status"] as! Int == 200){
+                let matchList = data["matchList"] as! NSDictionary
+                let matches = matchList["matches"] as! NSArray
+                self.seriesArray = matches
+                self.seriesTableView.reloadData()
+                print(data["meta"])
+//                completedMatchCount = 18;
+//                inProgressMatchCount = 3;
+//                upcomingMatchCount = 10;
+            }else{
+                print("Error in \(url)")
+                print(data)
+            }
         }
     }
 }
