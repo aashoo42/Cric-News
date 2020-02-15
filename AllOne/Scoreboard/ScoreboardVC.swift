@@ -16,6 +16,7 @@ class ScoreboardVC: UIViewController {
     @IBOutlet weak var firstInngsTotalLbl: UILabel!
     @IBOutlet weak var firstInngsOversLbl: UILabel!
     @IBOutlet weak var batsmanHeaderView: UIView!
+    @IBOutlet var bowlerHeaderView: UIView!
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var statusLbl: UILabel!
@@ -32,12 +33,14 @@ class ScoreboardVC: UIViewController {
     
     @IBOutlet weak var resultLbl: UILabel!
     
+    @IBOutlet weak var InngCollectionView: UICollectionView!
     @IBOutlet weak var scoreboardTableView: UITableView!
     
     
     var inningsArray = NSArray()
-    
     var alreadyMatchData = MatchData(json: NSDictionary())
+    
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,15 +75,14 @@ class ScoreboardVC: UIViewController {
         resultLbl.text = alreadyMatchData.matchSummaryText
     }
     
-    func setupAllData(){
+    func setupHeaderData(index: Int){
         // setup Batsmen headerview
-        let firstInngs = self.inningsArray[0] as! NSDictionary
+        let firstInngs = self.inningsArray[selectedIndex] as! NSDictionary
         firstInngsLbl.text = firstInngs["name"] as? String ?? ""
         let runs = firstInngs["run"] as? String ?? ""
         let wicket = firstInngs["wicket"] as? String ?? ""
         firstInngsTotalLbl.text = "\(wicket)-\(runs)"
         firstInngsOversLbl.text = "(\(firstInngs["over"] as? String ?? ""))"
-        
     }
     
     func getScoreboard(seriesId: Int, matchId: Int){
@@ -100,38 +102,81 @@ class ScoreboardVC: UIViewController {
             self.inningsArray = fullScorecard["innings"] as! NSArray
             self.scoreboardTableView.isHidden = false
             self.scoreboardTableView.reloadData()
-            self.setupAllData()
+            self.InngCollectionView.reloadData()
+            self.setupHeaderData(index: self.selectedIndex)
         }
     }
 }
 
+extension ScoreboardVC: UICollectionViewDelegate, UICollectionViewDataSource{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return inningsArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = self.InngCollectionView.dequeueReusableCell(withReuseIdentifier: "InngCell", for: indexPath) as! InngCell
+        
+        if indexPath.row == selectedIndex{
+            cell.backgroundColor = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 1.0)
+        }else{
+            cell.backgroundColor = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 0.5)
+        }
+        
+        let tempDict = inningsArray[indexPath.row] as! NSDictionary
+        cell.inngLbl.text = tempDict["shortName"] as? String ?? ""
+        cell.inngLbl.textColor = UIColor.white
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndex = indexPath.item
+        self.setupHeaderData(index: self.selectedIndex)
+        collectionView.reloadData()
+        scoreboardTableView.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+    }
+}
 
 extension ScoreboardVC: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.inningsArray.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
+        if section == 0{ // batsman section
             if self.inningsArray.count > 0{
-                let wickets = Int((self.inningsArray[0] as! NSDictionary)["wicket"] as! String)
+                let wickets = Int((self.inningsArray[selectedIndex] as! NSDictionary)["wicket"] as! String)!
+                
                 if wickets == 0{
                     return 4 // extras + Total + 1st + 2nd batsman
                 }else{
-                    return wickets! + 4
+                    return wickets + 4
                 }
             }else{
                 return 0
             }
             
+        } else { // bowler section
+            if self.inningsArray.count > 0{
+                let bowlers = (self.inningsArray[selectedIndex] as! NSDictionary)["bowlers"] as! NSArray
+                return bowlers.count
+            }else{
+                return 0
+            }
         }
-        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{ // batsman section
             
-            let tempDict = self.inningsArray[0] as! NSDictionary
+            let tempDict = self.inningsArray[selectedIndex] as! NSDictionary
             var wickets = Int(tempDict["wicket"] as! String)
             
             // all out check
@@ -180,7 +225,17 @@ extension ScoreboardVC: UITableViewDelegate, UITableViewDataSource{
             }
             
         }else{
-            let cell = UITableViewCell()
+            let bowlers = (self.inningsArray[selectedIndex] as! NSDictionary)["bowlers"] as! NSArray
+            let tempDict = bowlers[indexPath.row] as! NSDictionary
+            let cell = self.scoreboardTableView.dequeueReusableCell(withIdentifier: "BowlerCell") as! BowlerCell
+            
+            cell.nameLbl.text = tempDict["name"] as? String ?? ""
+            cell.oversLbl.text = tempDict["overs"] as? String ?? ""
+            cell.maidenLbl.text = tempDict["maidens"] as? String ?? ""
+            cell.economyLbl.text = tempDict["economy"] as? String ?? ""
+            cell.runsLbl.text = tempDict["runsConceded"] as? String ?? ""
+            cell.wicketsLbl.text = tempDict["wickets"] as? String ?? ""
+            
             return cell
         }
         
@@ -190,17 +245,28 @@ extension ScoreboardVC: UITableViewDelegate, UITableViewDataSource{
         if section == 0{
             return batsmanHeaderView
         }else{
-            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 375, height: 60))
-            headerView.backgroundColor = UIColor.lightGray
-            return headerView
+            return bowlerHeaderView
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        if (section == 0){
+            return 80
+        }else{
+            return 35
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        if indexPath.section == 0{
+            let rowsInFirstSection = self.scoreboardTableView.numberOfRows(inSection: 0)
+            if indexPath.row+1 == rowsInFirstSection || indexPath.row+1 == rowsInFirstSection-1{
+                return 40
+            }
+            return 55
+        }else{
+            return 43
+        }
+        
     }
 }
