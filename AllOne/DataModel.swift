@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct SeriesName {
     let shortName: String
@@ -91,4 +92,9 @@ class Scoreboard: NSObject {
     init(json: NSDictionary) {
         
     }
+}
+
+struct AppColors {
+    static let darkBlue = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 1.0)
+    static let lighBlue = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 0.5)
 }

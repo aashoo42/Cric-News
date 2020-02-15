@@ -259,8 +259,58 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I30-x5-Zv4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpj-JT-A5K" userLabel="Segment">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Z1W-U3-kSV">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntN-Cm-tOQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187" height="39"/>
+                                                        <color key="backgroundColor" red="0.058823529409999999" green="0.54117647059999996" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                        <state key="normal" title="Live">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="segmantAction:" destination="lcy-Ca-I10" eventType="touchUpInside" id="iXM-sL-hNy"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ait-N7-Yt4">
+                                                        <rect key="frame" x="188" y="0.0" width="187" height="39"/>
+                                                        <color key="backgroundColor" red="0.058823529409999999" green="0.54117647059999996" blue="0.80784313730000001" alpha="0.47586686643835618" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                        <state key="normal" title="Upcoming">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="segmantAction:" destination="lcy-Ca-I10" eventType="touchUpInside" id="QEX-nO-LGW"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vp4-wM-74R" userLabel="Line">
+                                                <rect key="frame" x="0.0" y="39" width="375" height="1"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="WBb-CI-cXq"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Z1W-U3-kSV" firstAttribute="leading" secondItem="cpj-JT-A5K" secondAttribute="leading" id="CDM-iW-gGt"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z1W-U3-kSV" secondAttribute="trailing" id="KLM-2L-L9V"/>
+                                            <constraint firstItem="vp4-wM-74R" firstAttribute="top" secondItem="Z1W-U3-kSV" secondAttribute="bottom" id="Tcp-ND-ey9"/>
+                                            <constraint firstItem="vp4-wM-74R" firstAttribute="leading" secondItem="cpj-JT-A5K" secondAttribute="leading" id="UxV-HR-NKw"/>
+                                            <constraint firstItem="Z1W-U3-kSV" firstAttribute="top" secondItem="cpj-JT-A5K" secondAttribute="top" id="Xb0-9w-vp0"/>
+                                            <constraint firstAttribute="bottom" secondItem="vp4-wM-74R" secondAttribute="bottom" id="bMG-qP-qio"/>
+                                            <constraint firstAttribute="width" secondItem="cpj-JT-A5K" secondAttribute="height" multiplier="75:8" id="cJn-Ol-afe"/>
+                                            <constraint firstAttribute="trailing" secondItem="vp4-wM-74R" secondAttribute="trailing" id="vG3-2I-zSz"/>
+                                        </constraints>
+                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="160" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d7N-X1-0tk">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="40" width="375" height="563"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SeriesCell" id="j7C-Mb-rJs" customClass="SeriesCell" customModule="AllOne" customModuleProvider="target">
@@ -415,9 +465,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="d7N-X1-0tk" firstAttribute="leading" secondItem="I30-x5-Zv4" secondAttribute="leading" id="6fq-hw-snu"/>
-                                    <constraint firstItem="d7N-X1-0tk" firstAttribute="top" secondItem="I30-x5-Zv4" secondAttribute="top" id="J5v-kz-xyf"/>
+                                    <constraint firstItem="d7N-X1-0tk" firstAttribute="top" secondItem="cpj-JT-A5K" secondAttribute="bottom" id="MJN-m7-kQr"/>
                                     <constraint firstAttribute="bottom" secondItem="d7N-X1-0tk" secondAttribute="bottom" id="ibG-eT-Vac"/>
+                                    <constraint firstAttribute="trailing" secondItem="cpj-JT-A5K" secondAttribute="trailing" id="jg9-97-Oji"/>
+                                    <constraint firstItem="cpj-JT-A5K" firstAttribute="leading" secondItem="I30-x5-Zv4" secondAttribute="leading" id="vVG-Ne-Y2X"/>
                                     <constraint firstAttribute="trailing" secondItem="d7N-X1-0tk" secondAttribute="trailing" id="wxr-0c-5Ag"/>
+                                    <constraint firstItem="cpj-JT-A5K" firstAttribute="top" secondItem="I30-x5-Zv4" secondAttribute="top" id="yvd-F7-1tz"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -434,6 +487,8 @@
                     <navigationItem key="navigationItem" title="Series" id="WEj-j1-SZN"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="comingBtn" destination="ait-N7-Yt4" id="EQO-t9-mAi"/>
+                        <outlet property="liveBtn" destination="ntN-Cm-tOQ" id="Fa2-3Q-hba"/>
                         <outlet property="seriesTableView" destination="d7N-X1-0tk" id="NPT-xh-yMb"/>
                     </connections>
                 </viewController>

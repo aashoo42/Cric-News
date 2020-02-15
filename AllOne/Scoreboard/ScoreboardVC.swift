@@ -128,9 +128,9 @@ extension ScoreboardVC: UICollectionViewDelegate, UICollectionViewDataSource{
         let cell = self.InngCollectionView.dequeueReusableCell(withReuseIdentifier: "InngCell", for: indexPath) as! InngCell
         
         if indexPath.row == selectedIndex{
-            cell.backgroundColor = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 1.0)
+            cell.backgroundColor = AppColors.darkBlue
         }else{
-            cell.backgroundColor = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 0.5)
+            cell.backgroundColor = AppColors.lighBlue
         }
         
         let tempDict = inningsArray[indexPath.row] as! NSDictionary

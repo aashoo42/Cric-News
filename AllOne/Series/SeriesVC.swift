@@ -12,10 +12,17 @@ import SVProgressHUD
 
 class SeriesVC: UIViewController {
 
+    @IBOutlet weak var liveBtn: UIButton!
+    @IBOutlet weak var comingBtn: UIButton!
+    
     @IBOutlet weak var seriesTableView: UITableView!
     
     var seriesId = 0
-    var seriesArray = NSArray()
+    
+    var liveArray = NSMutableArray()
+    var comingArray = NSMutableArray()
+    
+    var isLive = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,18 +46,40 @@ class SeriesVC: UIViewController {
             if (data["status"] != nil) && (data["status"] as! Int == 200){
                 let matchList = data["matchList"] as! NSDictionary
                 let matches = matchList["matches"] as! NSArray
-                self.seriesArray = matches
-                self.seriesTableView.reloadData()
+                self.setupDataForTableView(allMatches: matches)
                 print(data["meta"])
-//                completedMatchCount = 18;
-//                inProgressMatchCount = 3;
-//                upcomingMatchCount = 10;
             }else{
                 print("Error in \(url)")
                 print(data)
             }
         }
     }
+    
+    func setupDataForTableView(allMatches: NSArray){
+        for case let match as NSDictionary in allMatches{
+            let matchStatus = match["status"] as? String ?? ""
+            if matchStatus == "UPCOMING"{
+                comingArray.add(match)
+            }else{
+                liveArray.add(match)
+            }
+        }
+        self.seriesTableView.reloadData()
+    }
+    
+    @IBAction func segmantAction(_ sender: UIButton) {
+        if sender.tag == 0{ // show live results
+            liveBtn.backgroundColor = AppColors.darkBlue
+            comingBtn.backgroundColor = AppColors.lighBlue
+            isLive = true
+        }else{ // show upcoming results
+            liveBtn.backgroundColor = AppColors.lighBlue
+            comingBtn.backgroundColor = AppColors.darkBlue
+            isLive = false
+        }
+        self.seriesTableView.reloadData()
+    }
+    
 }
 
 extension SeriesVC: UITableViewDataSource, UITableViewDelegate{
@@ -59,12 +88,21 @@ extension SeriesVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.seriesArray.count
+        if isLive{
+            return self.liveArray.count
+        }
+        return self.comingArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = seriesTableView.dequeueReusableCell(withIdentifier: "SeriesCell") as! SeriesCell
-        let tempDict = seriesArray[indexPath.row] as! NSDictionary
+        
+        var tempDict = NSDictionary()
+        if isLive{
+            tempDict = liveArray[indexPath.row] as! NSDictionary
+        }else{
+            tempDict = comingArray[indexPath.row] as! NSDictionary
+        }
         
         let matchData = MatchData.init(json: tempDict)
         
@@ -127,8 +165,13 @@ extension SeriesVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        var tempDict = NSDictionary()
+        if isLive{
+            tempDict = liveArray[indexPath.row] as! NSDictionary
+        }else{
+            tempDict = comingArray[indexPath.row] as! NSDictionary
+        }
         
-        let tempDict = seriesArray[indexPath.row] as! NSDictionary
         let matchData = MatchData.init(json: tempDict)
         
         if (matchData.scores.awayOvers != "0") && (matchData.scores.homeOvers != "0") && (matchData.currentStatus != "UPCOMING"){
@@ -143,7 +186,10 @@ extension SeriesVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
+        if isLive{
+            return 140
+        }
+        return 110
     }
 }
 
