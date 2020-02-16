@@ -21,6 +21,8 @@
 		6D69DCE323EEBF740070D353 /* SeriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69DCE223EEBF740070D353 /* SeriesCell.swift */; };
 		6D69DCE723EEC8190070D353 /* ScoreboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69DCE623EEC8190070D353 /* ScoreboardVC.swift */; };
 		6D69DCE923EECEB20070D353 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69DCE823EECEB20070D353 /* DataModel.swift */; };
+		6D8D748323F84127009C668A /* ComInngCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D748223F84127009C668A /* ComInngCell.swift */; };
+		6D8D748523F8413F009C668A /* CommOverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D748423F8413F009C668A /* CommOverCell.swift */; };
 		6DB0A37A23EDCDB5009541BB /* CricketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB0A37923EDCDB5009541BB /* CricketCell.swift */; };
 		6DFD39CC23F817FB002B2EFA /* CommentryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFD39CB23F817FB002B2EFA /* CommentryVC.swift */; };
 		7521CE449220BF6D32B732A7 /* Pods_AllOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE32E68D87C8E1EE2B81D90 /* Pods_AllOne.framework */; };
@@ -43,6 +45,8 @@
 		6D69DCE223EEBF740070D353 /* SeriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCell.swift; sourceTree = "<group>"; };
 		6D69DCE623EEC8190070D353 /* ScoreboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardVC.swift; sourceTree = "<group>"; };
 		6D69DCE823EECEB20070D353 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		6D8D748223F84127009C668A /* ComInngCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComInngCell.swift; sourceTree = "<group>"; };
+		6D8D748423F8413F009C668A /* CommOverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommOverCell.swift; sourceTree = "<group>"; };
 		6DB0A37923EDCDB5009541BB /* CricketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CricketCell.swift; sourceTree = "<group>"; };
 		6DFD39CB23F817FB002B2EFA /* CommentryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentryVC.swift; sourceTree = "<group>"; };
 		BDD0ABC06CFE12059F14C9D7 /* Pods-AllOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllOne.release.xcconfig"; path = "Target Support Files/Pods-AllOne/Pods-AllOne.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				6DFD39CB23F817FB002B2EFA /* CommentryVC.swift */,
+				6D8D748223F84127009C668A /* ComInngCell.swift */,
+				6D8D748423F8413F009C668A /* CommOverCell.swift */,
 			);
 			path = Commentry;
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D11DBDF23F02F2C007E2D92 /* ExtrasCell.swift in Sources */,
+				6D8D748323F84127009C668A /* ComInngCell.swift in Sources */,
 				6D69DCE923EECEB20070D353 /* DataModel.swift in Sources */,
 				6D69DCE723EEC8190070D353 /* ScoreboardVC.swift in Sources */,
 				6D14286323F7CA2600AEB876 /* AppUtils.swift in Sources */,
@@ -280,6 +287,7 @@
 				6DFD39CC23F817FB002B2EFA /* CommentryVC.swift in Sources */,
 				6D14285E23F7A9FD00AEB876 /* BowlerCell.swift in Sources */,
 				6D62610323EAB80F008407D0 /* AppDelegate.swift in Sources */,
+				6D8D748523F8413F009C668A /* CommOverCell.swift in Sources */,
 				6D14286023F7BC6600AEB876 /* InngCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
