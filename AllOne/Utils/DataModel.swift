@@ -98,3 +98,8 @@ struct AppColors {
     static let darkBlue = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 1.0)
     static let lighBlue = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 0.5)
 }
+
+struct AdsIds {
+    static let bannerID = "ca-app-pub-3940256099942544/2934735716" // test
+    static let interstitialID = "ca-app-pub-3940256099942544/4411468910" // test
+}

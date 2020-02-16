@@ -85,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				6D14286223F7CA2600AEB876 /* AppUtils.swift */,
+				6D69DCE823EECEB20070D353 /* DataModel.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -131,10 +132,9 @@
 				6D14286123F7CA0700AEB876 /* Utils */,
 				6D62610223EAB80F008407D0 /* AppDelegate.swift */,
 				6D62610423EAB80F008407D0 /* ViewController.swift */,
+				6DB0A37923EDCDB5009541BB /* CricketCell.swift */,
 				6D49554D23F906D900EAD812 /* News */,
 				6DFD39CA23F817E6002B2EFA /* Commentry */,
-				6DB0A37923EDCDB5009541BB /* CricketCell.swift */,
-				6D69DCE823EECEB20070D353 /* DataModel.swift */,
 				6D69DCE423EEC7EF0070D353 /* Series */,
 				6D69DCE523EEC7FD0070D353 /* Scoreboard */,
 				6D62610623EAB80F008407D0 /* Main.storyboard */,

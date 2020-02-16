@@ -11,6 +11,7 @@ let deviceRatio = (UIScreen.main.bounds.width) / (375) // 1 for iPhone 6
 import UIKit
 import Reachability
 import SVProgressHUD
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.checkInternetConnection()
         
+//        GADMobileAds.sharedInstance().start(completionHandler: nil)
+
         
         
         SVProgressHUD.setBackgroundColor(UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 0.5))

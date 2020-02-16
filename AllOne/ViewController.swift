@@ -9,13 +9,16 @@
 import UIKit
 import Alamofire
 import AlamofireImage
-import SVProgressHUD
+import GoogleMobileAds
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var cricketTableView: UITableView!
+    
     private var cricketArray = NSArray()
     
+    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +26,19 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.init(red: 0.0/255.0, green: 157.0/255.0, blue: 215.0/255.0, alpha: 0.5)
         navigationController?.navigationBar.tintColor = UIColor.white
 
-        
         getCricketData()
+        setupBannerAd()
     }
-
+    
+    func setupBannerAd(){
+        bannerView.adUnitID = AdsIds.bannerID
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
+        interstitial = GADInterstitial(adUnitID: AdsIds.interstitialID)
+        let request = GADRequest()
+        interstitial.load(request)
+    }
 
     func getCricketData(){
         let headers = [
@@ -120,6 +132,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         
         cell.seeAllBtn.tag = indexPath.row
         cell.seeAllBtn.addTarget(self, action: #selector(showSeries(sender:)), for: .touchUpInside)
+        
+        if interstitial.isReady{
+            interstitial.present(fromRootViewController: self)
+        }
 
         return cell
     }
