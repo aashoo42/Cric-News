@@ -13,12 +13,9 @@ import GoogleMobileAds
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var cricketTableView: UITableView!
     
     private var cricketArray = NSArray()
-    
-    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,19 +24,8 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
 
         getCricketData()
-        setupBannerAd()
     }
     
-    func setupBannerAd(){
-        bannerView.adUnitID = AdsIds.bannerID
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        
-        interstitial = GADInterstitial(adUnitID: AdsIds.interstitialID)
-        let request = GADRequest()
-        interstitial.load(request)
-    }
-
     func getCricketData(){
         let headers = [
             "x-rapidapi-host": "dev132-cricket-live-scores-v1.p.rapidapi.com",
@@ -132,10 +118,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         
         cell.seeAllBtn.tag = indexPath.row
         cell.seeAllBtn.addTarget(self, action: #selector(showSeries(sender:)), for: .touchUpInside)
-        
-        if interstitial.isReady{
-            interstitial.present(fromRootViewController: self)
-        }
 
         return cell
     }
@@ -151,10 +133,19 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
             objScoreboardVC.alreadyMatchData = matchData
             self.navigationController?.pushViewController(objScoreboardVC, animated: true)
         }
+        (UIApplication.shared.delegate as! AppDelegate).showInterstitialAd(controller: self)
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
+        let headerBannerView = GADBannerView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        headerBannerView.adUnitID = AdsIds.bannerID
+        headerBannerView.rootViewController = self
+        headerBannerView.load(GADRequest())
+        return headerBannerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -167,5 +158,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         let seriesId =  (tempDict["series"] as! NSDictionary)["id"] as! Int
         objSeriesVC.seriesId = seriesId
         self.navigationController?.pushViewController(objSeriesVC, animated: true)
+        (UIApplication.shared.delegate as! AppDelegate).showInterstitialAd(controller: self)
     }
 }

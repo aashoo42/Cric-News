@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SVProgressHUD
+import GoogleMobileAds
 
 class ScoreboardVC: UIViewController {
 
@@ -116,6 +117,7 @@ class ScoreboardVC: UIViewController {
         objCommentryVC.seriesId = alreadyMatchData.seriesName.seriesId
         objCommentryVC.matchId = alreadyMatchData.id
         self.navigationController?.pushViewController(objCommentryVC, animated: true)
+        (UIApplication.shared.delegate as! AppDelegate).showInterstitialAd(controller: self)
     }
 }
 
@@ -148,6 +150,7 @@ extension ScoreboardVC: UICollectionViewDelegate, UICollectionViewDataSource{
         self.setupHeaderData(index: self.selectedIndex)
         collectionView.reloadData()
         scoreboardTableView.reloadData()
+        (UIApplication.shared.delegate as! AppDelegate).showInterstitialAd(controller: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -279,5 +282,17 @@ extension ScoreboardVC: UITableViewDelegate, UITableViewDataSource{
             return 43
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let headerBannerView = GADBannerView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        headerBannerView.adUnitID = AdsIds.bannerID
+        headerBannerView.rootViewController = self
+        headerBannerView.load(GADRequest())
+        return headerBannerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40
     }
 }

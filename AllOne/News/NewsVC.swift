@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class NewsVC: UIViewController {
 
@@ -21,6 +22,7 @@ class NewsVC: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         
         getCricketNews()
+        (UIApplication.shared.delegate as! AppDelegate).showInterstitialAd(controller: self)
     }
     
     
@@ -49,6 +51,7 @@ class NewsVC: UIViewController {
         let tempDict = self.newsArray[sender.tag] as! NSDictionary
         objNewsDetailVC.detailsDict = tempDict
         self.navigationController?.pushViewController(objNewsDetailVC, animated: true)
+        (UIApplication.shared.delegate as! AppDelegate).showInterstitialAd(controller: self)
     }
 }
 
@@ -78,6 +81,14 @@ extension NewsVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
+        let headerBannerView = GADBannerView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        headerBannerView.adUnitID = AdsIds.bannerID
+        headerBannerView.rootViewController = self
+        headerBannerView.load(GADRequest())
+        return headerBannerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
     }
 }

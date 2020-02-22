@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class CommentryVC: UIViewController {
     
@@ -84,6 +85,7 @@ extension CommentryVC: UICollectionViewDelegate, UICollectionViewDataSource{
         selectedIndex = indexPath.row
         collectionView.reloadData()
         commentaryTableView.reloadData()
+        (UIApplication.shared.delegate as! AppDelegate).showInterstitialAd(controller: self)
     }
 }
 
@@ -166,5 +168,21 @@ extension CommentryVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let headerBannerView = GADBannerView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        headerBannerView.adUnitID = AdsIds.bannerID
+        headerBannerView.rootViewController = self
+        headerBannerView.load(GADRequest())
+        return headerBannerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if (section%2)==0{
+            return 40
+        }
+        return 0
+        
     }
 }

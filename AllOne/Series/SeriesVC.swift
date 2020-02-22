@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SVProgressHUD
+import GoogleMobileAds
 
 class SeriesVC: UIViewController {
 
@@ -179,7 +180,15 @@ extension SeriesVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
+        let headerBannerView = GADBannerView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        headerBannerView.adUnitID = AdsIds.bannerID
+        headerBannerView.rootViewController = self
+        headerBannerView.load(GADRequest())
+        return headerBannerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

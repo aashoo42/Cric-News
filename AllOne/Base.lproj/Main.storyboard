@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Delegate-->
+        <!--Cric News-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AllOne" customModuleProvider="target" sceneMemberID="viewController">
@@ -218,24 +218,11 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="GYq-8P-6Cy"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8j-v1-1Ce" customClass="GADBannerView">
-                                        <rect key="frame" x="0.0" y="504" width="375" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="t8j-v1-1Ce" secondAttribute="height" multiplier="15:2" id="7tQ-jE-TFf"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="oOP-xR-ZCE"/>
-                                        </connections>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="CD1-1j-4SF" firstAttribute="top" secondItem="IQw-Yf-bpf" secondAttribute="top" id="AIg-HY-Zkm"/>
-                                    <constraint firstAttribute="trailing" secondItem="t8j-v1-1Ce" secondAttribute="trailing" id="Ckf-a7-0fy"/>
                                     <constraint firstAttribute="bottom" secondItem="CD1-1j-4SF" secondAttribute="bottom" id="KDK-lP-bHq"/>
-                                    <constraint firstItem="t8j-v1-1Ce" firstAttribute="leading" secondItem="IQw-Yf-bpf" secondAttribute="leading" id="P1z-aB-7n3"/>
-                                    <constraint firstAttribute="bottom" secondItem="t8j-v1-1Ce" secondAttribute="bottom" id="PNA-eO-bA1"/>
                                     <constraint firstItem="CD1-1j-4SF" firstAttribute="leading" secondItem="IQw-Yf-bpf" secondAttribute="leading" id="gIN-u6-8t9"/>
                                     <constraint firstAttribute="trailing" secondItem="CD1-1j-4SF" secondAttribute="trailing" id="l9o-Z3-yme"/>
                                 </constraints>
@@ -254,7 +241,6 @@
                     <navigationItem key="navigationItem" title="Cric News" id="lOu-Af-Ibu"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="bannerView" destination="t8j-v1-1Ce" id="4YB-rg-NDO"/>
                         <outlet property="cricketTableView" destination="CD1-1j-4SF" id="CMo-MO-tji"/>
                     </connections>
                 </viewController>
